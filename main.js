@@ -1,30 +1,47 @@
-var myString = 'Javascript hoc tai Js F8!'
+var languages = [
+    'Javascript',
+    'PHP',
+    'Ruby',
+    'C++'
+]
 
-// Length: đo độ dài của chuỗi
-// console.log(myString.length)
+// To string: chuyển từ array thành string
+// console.log(languages.toString())
 
-// Find index: tìm vị trí của một kí tự trong chuỗi 
-//console.log(myString.indexOf('Js))
+// Join: chuyển từ array thành string (nhưng có thể thêm các kí tự)
+// console.log(languages.join(', '))
 
-// Cut string: cắt chuỗi
-// console.log(myString.slice(0, 10))
+// Pop: xóa element cuối mảng 
+// console.log(languages.pop())
+// console.log(languages.pop())
+// console.log(languages.pop())
 
-// Replace: ghì đè
-// console.log(myString.replace(/Javascript/g, 'Js'))
+// Push: thêm một hoặc nhiều element tử vào cuối array
+// console.log(languages.push('Java'))
+// console.log(languages)
 
-// Convert to upper case: đổi thành chữ in hoa chuỗi
-// console.log(myString.toUpperCase())
+// Shift: xóa element đầu mảng
+// console.log(languages.shift())
+// console.log(languages.shift())
+// console.log(languages.shift())
+// console.log(languages)
 
-// Convert to lower case: đổi thành chữ thường chuỗi
-// console.log(myString.toLocaleLowerCase())
+// Unshift: thêm một hoặc nhiều element ở đầu mảng
+// console.log(languages.unshift('PHI', 'NGUYEN'))
+// console.log(languages)
 
-// Trim: loại bỏ khoảng trắng ở hai đầu chuỗi
-// console.log(myString.trim())
+// Splicing: xóa, cắt, chèn element vào mảng
+// languages.splice(1, 3, 'Java')
+// console.log(languages)
 
-// Split: cắt một chuỗi thành một mảng
-// console.log(myString.slice(11, 15))
+// Concat: hợp nhất các array
+// var languages2 = [
+//     'Java',
+//     'C#',
+//     'blockchain'
+// ]
+// console.log(languages2.concat(languages))
 
-// Get a character by index: 
-const myString2 = 'PHI NGUYEN'
-
-console.log(myString2.charAt[2])
+// Slicing: cắt một hoặc một vài element
+console.log(languages.slice(1, 3))
+console.log(languages)
