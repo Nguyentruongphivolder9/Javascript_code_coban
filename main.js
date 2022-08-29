@@ -1,43 +1,30 @@
-// Number
-var a = 1
+var myString = 'Javascript hoc tai Js F8!'
 
-console.log(typeof a)
-// String
-var fullName = 'PHI NGUYEN'
+// Length: đo độ dài của chuỗi
+// console.log(myString.length)
 
-// Boolean
-var isString = true
+// Find index: tìm vị trí của một kí tự trong chuỗi 
+//console.log(myString.indexOf('Js))
 
-// Underfind
-var age
+// Cut string: cắt chuỗi
+// console.log(myString.slice(0, 10))
 
-// Null
-var a = null // khong co gi
+// Replace: ghì đè
+// console.log(myString.replace(/Javascript/g, 'Js'))
 
-// Symbol
-var id = Symbol('id')
-var id2 = Symbol('id')
+// Convert to upper case: đổi thành chữ in hoa chuỗi
+// console.log(myString.toUpperCase())
 
+// Convert to lower case: đổi thành chữ thường chuỗi
+// console.log(myString.toLocaleLowerCase())
 
-// Function
-var myFunction = function() {
-    alert('Hi. Xin chao cac ban!')
-}
+// Trim: loại bỏ khoảng trắng ở hai đầu chuỗi
+// console.log(myString.trim())
 
-// Object types
+// Split: cắt một chuỗi thành một mảng
+// console.log(myString.slice(11, 15))
 
-var myObject = {
-    name: 'PHI NGUYEN',
-    age: 20,
-    address: 'hcm',
-    myFunction: function() {
+// Get a character by index: 
+const myString2 = 'PHI NGUYEN'
 
-    }
-}
-
-var myArray = [
-    'PHI NGUYEN',
-    'Javascript',
-    'Python'
-]
-
+console.log(myString2.charAt[2])
