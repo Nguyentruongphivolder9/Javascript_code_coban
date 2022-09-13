@@ -1,47 +1,103 @@
-var languages = [
-    'Javascript',
-    'PHP',
-    'Ruby',
-    'C++'
+
+/**
+    Array methods:
+
+        forEach(): Duyệt qua từng phần tử của mảng
+
+        every(): Kiểm tra tất cả các phần tử của mảng thỏa mãn...
+
+        some(): 
+
+        find():
+
+        filter():
+
+        map(): chỉnh sửa hoặc thay đổi các element của array
+
+        reduce():
+*/
+
+var courses = [
+    {
+        id: 1,
+        name: 'Javascript',
+        coin: 250
+    },
+    {
+        id: 2,
+        name: 'Ruby',
+        coin: 0
+    },
+    {
+        id: 3,
+        name: 'PHP',
+        coin: 0
+    },
+    {
+        id: 4,
+        name: 'C++',
+        coin: 400
+    },
+    {
+        id: 5,
+        name: 'HTML',
+        coin: 600
+    }
 ]
 
-// To string: chuyển từ array thành string
-// console.log(languages.toString())
+//Flat - "làm phẳng" mảng từ Depth array - "Mảng sâu"
+var depthArray = [1, 2, [3, 4], 5, 6, [7, 8, 9]]
 
-// Join: chuyển từ array thành string (nhưng có thể thêm các kí tự)
-// console.log(languages.join(', '))
+var flatArray = depthArray.reduce(function(flatOutput, depthItem) {
+    return flatOutput.concat(depthItem)
+}, [])
 
-// Pop: xóa element cuối mảng 
-// console.log(languages.pop())
-// console.log(languages.pop())
-// console.log(languages.pop())
+// console.log(flatArray)
 
-// Push: thêm một hoặc nhiều element tử vào cuối array
-// console.log(languages.push('Java'))
-// console.log(languages)
+// Lấy các khóa học đưa vào mảng mới
 
-// Shift: xóa element đầu mảng
-// console.log(languages.shift())
-// console.log(languages.shift())
-// console.log(languages.shift())
-// console.log(languages)
+var topics = [
+    {
+        topic: "Front-end",
+        courses1: [
+            {
+                id: 1,
+                title: "HTML, CSS"
+            },
+            {
+                id: 2, 
+                title: "Javascript"
+            }
+        ]
+    },
+    {
+        topic: "Back-end",
+        courses1: [
+            {
+                id: 1,
+                title: "PHP"
+            },
+            {
+                id: 2,
+                title: "NodeJs"
+            }
+        ]
+    }
+]
 
-// Unshift: thêm một hoặc nhiều element ở đầu mảng
-// console.log(languages.unshift('PHI', 'NGUYEN'))
-// console.log(languages)
+var newCourses = topics.reduce(function(courses1, topic) {
+    return courses1.concat(topic.courses1)
+}, [])
 
-// Splicing: xóa, cắt, chèn element vào mảng
-// languages.splice(1, 3, 'Java')
-// console.log(languages)
+console.log(newCourses)
 
-// Concat: hợp nhất các array
-// var languages2 = [
-//     'Java',
-//     'C#',
-//     'blockchain'
-// ]
-// console.log(languages2.concat(languages))
+var htmls = newCourses.map(function(courses1) {
+    return `
+        <div>
+            <h2>${courses1.title}</h2>
+            <p>ID: ${courses1.id}</p>
+        </div>
+    `
+})
 
-// Slicing: cắt một hoặc một vài element
-console.log(languages.slice(1, 3))
-console.log(languages)
+console.log(htmls.join(''))
