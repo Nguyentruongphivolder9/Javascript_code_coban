@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <style>
+        body {
+            align-items: center;
+            text-align: center;
+        }
+
+        .toast {
+            display: flex;
+            align-items: center;
+            max-width: 450px;
+            min-width: 400px;
+            background-color: #fff;
+            border-left: 4px solid;
+            border-radius: 2px;
+            box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08);
+            transition: all linear .3s;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(calc(100% + 32px));
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+            }
+        }
+
+        .toast+.toast {
+            margin-top: 20px;
+        }
+
+        .toast__success {
+            border-color: #47d864;
+        }
+
+        .toast__success .toast__icon {
+            color: #47d864;
+        }
+
+        .toast__info {
+            border-color: #2f86eb;
+        }
+
+        .toast__info .toast__icon {
+            color: #2f86eb;
+        }
+
+        .toast__error {
+            border-color: #ff623d;
+        }
+
+        .toast__error .toast__icon {
+            color: #ff623d
+        }
+
+        .toast__icon,
+        .toast__close {
+            padding: 0 16px;
+        }
+
+        .toast__icon {
+            font-size: 24px;
+        }
+
+        .toast__body {
+            flex-grow: 1;
+            text-align: left;
+            line-height: 2px;
+        }
+
+        .toast__title {
+            font-size: 19px;
+            font-weight: bold;
+            color: #0e0d0d;
+        }
+
+        .toast__msg {
+            font-size: 16px;
+            color: #888;
+            line-height: 1.5;
+        }
+
+        .toast__close {
+            font-size: 20px;
+        }
+
+        .toast__close:hover {
+            color: #888;
+        }
+
+        #toast {
+            position: fixed;
+            top: 32px;
+            right: 32px;
+            z-index: 1000;
+        }
+
+        .container {
+            width: fit-content;
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            margin: auto;
+        }
+
+        .btn {
+            padding: 10px;
+            width: fit-content;
+            height: fit-content;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        .btn+.btn {
+            margin-left: 20px;
+        }
+
+        .btn__success {
+            background-color: #47d864;
+        }
+
+        .btn__danger {
+            background-color: #ff623d;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="toast"></div>
+    <div class="container">
+
+        <div onclick="showSuccessToast()" class="btn btn__success">Show success toast</div>
+        <div onclick="showErrorToast()" class="btn btn__danger">Show error toast</div>
+
+    </div>
+    <script>
+        // Toast function
+        function toast({
+            title = '',
+            message = '',
+            type = 'info',
+            duration = 3000
+        }) {
+            const main = document.getElementById('toast');
+
+            if (main) {
+                const toast = document.createElement('div');
+
+                const autoRemoveId = setTimeout(() => {
+                    main.removeChild(toast);
+                }, duration + 1000)
+
+                toast.onclick = (e) => {
+                    if(e.target.closest('.toast__close')){
+                        main.removeChild(toast);
+                        clearTimeout(autoRemoveId);
+                    }
+                }
+
+                const icons = {
+                    success: 'fas fa-check-circle',
+                    info: 'fas fa-info-circle',
+                    error: 'fas fa-exclamation-circle'
+                }
+                const icon = icons[type]
+                const delay = (duration / 1000).toFixed(2)
+
+                toast.classList.add('toast', `toast__${type}`);
+                toast.style.animation = `slideInLeft ease .3s, fadeOut linear 1s ${delay}s forwards`;
+
+                toast.innerHTML = `
+                        <div class="toast toast__success">
+                            <div class="toast__icon">
+                                <i class="${icon}"></i>
+                            </div>
+                            <div class="toast__body">
+                                <p class="toast__title">${title}</p>
+                                <p class="toast__msg">${message}</p>
+                            </div>
+                            <div class="toast__close">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                    `;
+                main.appendChild(toast);
+
+            }
+        }
+
+        function showSuccessToast() {
+            toast({
+                title: 'Thành công',
+                message: 'Bạn đã đăng kí thành công tài khoản',
+                type: 'success',
+                duration: 3000
+            })
+        }
+        function showErrorToast() {
+            toast({
+                title: 'Lỗi xảy ra',
+                message: 'Có lõi xảy ra vui lòng liên hệ quản trị viên',
+                type: 'error',
+                duration: 3000
+            })
+        }
+    </script>
+</body>
+
+</html>

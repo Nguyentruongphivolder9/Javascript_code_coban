@@ -1,0 +1,14 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "name": "JavaScript",
+      "description": "Khóa học cơ bản"
+    },
+    {
+      "name": "PHP",
+      "description": "Một khóa học cơ bản giúp bạn xây dựng code backend",
+      "id": 2
+    }
+  ]
+}

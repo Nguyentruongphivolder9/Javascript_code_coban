@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            background-color: rgb(218, 215, 212);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 15px;
+        }
+
+        .form-container {
+            width: 300px;
+            margin: auto;
+            background-color: rgb(255, 255, 255);
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h3 {
+            font-size: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        label {
+            text-align: left;
+        }
+
+        .form-group input, select {
+            width: 100%;
+            height: 30px;
+        }
+
+        .form-label {
+            color: black;
+        }
+
+        button {
+            margin-top: 40px;
+            font-size: 20px;
+            font-weight: bold;
+            background-color: rgb(24, 195, 138);
+            border-radius: 4px;
+            width: 100%;
+            height: 40px;
+            color: #fff;
+        }
+
+        .form-message {
+            color: red;
+            text-align: left;
+        }
+        .radio{  
+            text-align: left;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #525050;
+        }
+        .radio input{
+            width: 13px;
+            height: 13px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+
+        <form action="" method="POST" id="form-1">
+            <h3>Thành viên đăng ký</h3>
+            <p>Cùng nhau học lập trình miễn phí tại F8</p>
+
+            <div class="spacer"></div>
+
+            <div class="form-group">
+                <label for="fullname" class="form-label">Tên đầy đủ</label>
+                <div>
+                    <div>
+                        <input id="fullname" type="text" name="fullname" placeholder="VD: Sơn Đặng" class="form-control">
+                    </div>
+                </div>
+                <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input id="email" type="email" name="email" placeholder="VD: email@gmail.com" class="form-control">
+                <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+                <label for="password" class="form-label">Mật khẩu</label>
+                <input id="password" type="password" name="password" placeholder="Password" class="form-control">
+                <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+                <label for="password-confirm" class="form-label">Nhập lại mật khẩu</label>
+                <input id="password-confirm" type="password" name="password-confirm" placeholder="Confirm Password" class="form-control">
+                <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+                <label for="avatar" class="form-label">Ảnh đại diện</label>
+                <input id="avatar" name="avatar" type="file" class="form-control">
+                <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+                <label for="province" class="form-label">Nơi Cư trú</label>
+                <select id="province" name="province" class="form-control"> 
+                    <option value="">-- Chọn Tỉnh/TP --</option>
+                    <option value="hni">Hà Nội</option>
+                    <option value="dna">Đà Nẵng</option>
+                </select>
+                <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+                <label for="password-confirm" class="form-label">Giới Tính</label>
+                <div class="radio">
+                    <input name="gender" type="radio" value="male" class="form-control">
+                    Nam
+                    <input name="gender" type="radio" value="female" class="form-control">
+                    Nữ
+                    <input name="gender" type="radio" value="orther" class="form-control">
+                    Khác
+                </div>
+                <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+                <label for="password-confirm" class="form-label">Ứng tuyển vào vị trí</label>
+                <div class="radio">
+                    <input name="check" type="checkbox" value="male" class="form-control">
+                    Fresher
+                    <input name="check" type="checkbox" value="female" class="form-control">
+                    Sornior
+                    <input name="check" type="checkbox" value="orther" class="form-control">
+                    Manager
+                </div>
+                <span class="form-message"></span>
+            </div>
+
+            <button class="form-submit">Đăng ký</button>
+        </form>
+    </div>
+
+    <script src="./validator.js"></script>
+
+    <script>
+        Validator({
+            form: '#form-1',
+            formGroupSelector: '.form-group',
+            errorSelectors: '.form-message',
+            rules: [
+                // Validator.isRequired('#fullname', 'Không được bỏ trống'),
+                // Validator.isFullname('#fullname', 3, 'Vui lòng nhập tối thiểu 3 kí tự'),
+                // Validator.isRequired('#email', 'Không được bỏ trống'),
+                // Validator.isEmail('#email', 'Vui lòng nhập Email của bạn'),
+                // Validator.isRequired('#password', 'Không được bỏ trống'),
+                // Validator.minLength('#password', 6, 'Vui lòng nhập tối thiểu 6 kí tự'),
+                // Validator.isRequired('#password-confirm', 'Không được bỏ trống'),
+                // Validator.isConfirmed('#password-confirm', () => {
+                //     return document.querySelector('#form-1 #password').value
+                // }, 'Mật khẩu nhập lại không chính xác'),
+                Validator.isRequired('#avatar'),
+                // Validator.isRequired('#province'),
+                Validator.isRequired('input[name="gender"]'),
+                // Validator.isRequired('input[name="check"]'),
+            ],
+            onSubmit: (data) => {
+                //Call API
+                console.log(data);
+            }
+        });
+    </script>
+</body>
+
+</html>

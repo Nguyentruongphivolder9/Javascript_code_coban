@@ -1,13 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <h1>Javascript basic 123123</h1>
-    <script src="./main.js"></script>
+
+    <div>
+        <h2>Danh Sach Khoa Hoc</h2>
+        <ul id="list-course"></ul>
+    </div>
+
+    <div>
+        <div>
+            <label>Name</label>
+            <input type="text" name="name">
+        </div>
+        <div>
+            <label>Description</label>
+            <input type="text" name="description">
+        </div>
+        <div>
+            <button id="create">Create</button>
+        </div>
+    </div>
+
+    <script>
+
+        var courseApi = 'http://localhost:3000/posts';
+
+        function start() {
+            getCourses((courses) => {
+                renderCourses(courses);
+            });
+            handleCreateForm();
+        }
+
+        start();
+
+        function getCourses(callback) {
+            fetch(courseApi)
+                .then((res) => {
+                    return res.json();
+                })
+                .then(callback)
+        }
+
+        function renderCourses(courses) {
+            var listCourses = document.querySelector('#list-course');
+
+            var htmls = courses.map((course) => {
+                return `<li class="course-item-${course.id}">
+                        <h2>${course.name}</h2>
+                        ${course.description} <br>
+                        <button onClick="handleDeleteCourse(${course.id})">Xóa</button>
+                    </li>`;
+            });
+            listCourses.innerHTML = htmls.join('');
+        }
+
+        function handleCreateForm() {
+            var createBtn = document.querySelector('#create');
+
+            createBtn.addEventListener('click', function () {
+                var name = document.querySelector('input[name="name"]').value;
+                var description = document.querySelector('input[name="description"]').value;
+
+                var formData = {
+                    name: name,
+                    description: description
+                }
+
+                createCourse(formData, function() {
+                    getCourses(renderCourses);
+                });
+            });
+        }
+
+        function createCourse(data, callback) {
+            var options = {
+                method: "POST",
+                headers: {"Content-Type": "application/json",},
+                body: JSON.stringify(data)
+            }
+            fetch(courseApi, options)
+                .then((res) => {
+                    return res.json();
+                })
+                .then(callback)
+            
+        }
+
+        function handleDeleteCourse(id){
+            var options = {
+                method: "DELETE",
+                headers: {"Content-Type": "application/json",}
+            }
+            fetch(courseApi + "/" + id, options)
+                .then((res) => {
+                    return res.json();
+                })
+                .then(function() {
+                    var courseItem = document.querySelector('.course-item' + id);
+                    if(courseItem){
+                        courseItem.remove();
+                    }
+                })
+        }
+
+    </script>
 </body>
+
 </html>
