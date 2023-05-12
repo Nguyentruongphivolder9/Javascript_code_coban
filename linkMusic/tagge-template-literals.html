@@ -12,7 +12,7 @@
         function hightLight([first, ...strings], ...values){
             return values.reduce((acc, curr) => [
                 ...acc, `<span>${curr}</span>`, strings.shift()
-            ], [first]).join();
+            ], [first]).join(u);
         }
 
         var brand = 'F8';
